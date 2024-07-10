@@ -1,0 +1,1476 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 0;
+  list-style: none;
+  appearance: none;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: auto; /* Ensure the page is scrollable */
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.88rem;
+  user-select: none;
+  overflow-x: hidden;
+  background-color: rgb(240, 234, 234);
+}
+
+.info {
+  user-select: text;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav li {
+  margin-right: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+}
+
+header nav ul li a {
+  font-size: 1.2rem;
+}
+
+.container {
+  display: grid;
+  width: 96%;
+  gap: 1.8rem;
+  grid-template-columns: 18rem auto 14rem;
+  margin: 0 auto;
+  height: 100%; /* Ensure it takes the full viewport height */
+}
+
+.logo {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+
+.logo h2 {
+  font-size: 2.5rem;
+  font-weight: 1000;
+  margin-left: 1rem;
+}
+
+#dash {
+  margin-top: 0.2rem;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 1.8rem;
+}
+
+h2 {
+  color: rgb(70, 67, 67);
+}
+
+h3 {
+  font-size: 0.87rem;
+  color: black;
+}
+
+h4 {
+  font-size: 0.8rem;
+}
+
+h5 {
+  font-size: 0.77rem;
+}
+
+aside {
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+aside::-webkit-scrollbar {
+  width: 8px;
+}
+
+aside::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+aside:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.aside.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.4rem;
+  padding: 0 1rem;
+}
+
+aside.logo {
+  display: flex;
+  gap: 1rem;
+}
+
+/* .heading {
+  margin-bottom: 16px;
+  margin-top: 25px;
+  font-size: 1.5rem;
+  background-color: #fff;
+  margin-left: none;
+  border-radius: 5px;
+  text-align: center;
+  color: rgb(70, 67, 67);
+} */
+
+/* sidebar */
+.sidebar {
+  background-color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  top: 1rem;
+  border-radius: 5px;
+  width: 14rem;
+  padding: 1rem 0;
+  position: fixed;
+}
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  margin-left: 50px;
+  margin-top: 70px;
+}
+
+.sidebar-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%; /* Adjust width as needed */
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.sidebar-item:hover {
+  background-color: #ccc;
+}
+
+.sidebar-item:active {
+  background-color: #c6bdbd;
+}
+
+.sidebar-item h3 {
+  margin-top: 10px; /* Add margin to the top of h3 for spacing */
+}
+
+.material-symbols-outlined {
+  font-size: 2rem; /* Adjust icon size as needed */
+  color: chocolate;
+}
+
+body.dark-mode .sidebar-item h3 {
+  color: #555;
+}
+.logout {
+  margin-top: auto; /* Pushes the logout item to the bottom */
+  margin-top: 50px;
+}
+
+.heading {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 60px;
+  margin-left: 50px;
+  position: fixed;
+}
+.msg_count {
+  background-color: rgb(196, 64, 64);
+  color: white;
+  padding: 2px 5px;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+#p {
+  display: flex;
+  align-items: center;
+  height: 3.2rem;
+  padding: 0 1rem;
+  color: grey;
+  gap: 1rem;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+#p:hover {
+  transform: translateX(10px);
+  width: calc(100% - 2rem);
+}
+
+#p:hover span,
+#p:hover h3 {
+  color: #333;
+}
+
+#p:active {
+  background-color: #f2f2f2;
+  width: calc(100% - 2rem);
+}
+
+#pr:active {
+  background-color: #f2f2f2;
+  width: 100%;
+}
+
+#pr {
+  color: grey;
+}
+
+#pr:hover {
+  color: #333;
+}
+
+#pa {
+  color: rgb(71, 58, 58);
+  font-size: 1.3rem;
+}
+
+#s_1 {
+  color: rgb(71, 58, 58);
+  font-size: 1.3rem;
+}
+
+/* main */
+#m-content {
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+#m-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+#m-content::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#m-content:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Keyframes for the welcome message animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Welcome message */
+.msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  margin-top: 40px;
+  margin-left: -5rem;
+  font-size: 4rem;
+  white-space: nowrap;
+  animation: fadeInUp 1s ease-in-out; /* Apply the animation */
+}
+/* Target the date input field */
+input[type="date"] {
+  padding: 10px;
+  border: 2px solid #bbb;
+  border-radius: 3px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  color: #666;
+  background-color: #eee;
+  outline: none;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+
+/* Change the appearance when the input is focused */
+input[type="date"]:focus {
+  border-color: #cf23cf;
+  background-color: #fff;
+}
+
+input[type="date"]::placeholder {
+  color: #999;
+  font-style: italic;
+}
+.project-description {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-top: 5rem;
+  margin-left: 2rem;
+}
+
+.project-description h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: rgb(35, 26, 26);
+}
+
+.project-description p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.info {
+  text-align: justify;
+}
+
+.Application {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.Application h2 {
+  display: inline-block;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.application-item {
+  margin-bottom: 15px;
+}
+
+.application-item h3 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  color: #007bff;
+}
+
+.application-item p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Dark Mode Specific Styles */
+body.dark-mode .Application {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .Application h2,
+body.dark-mode .application-item h3 {
+  color: #66b2ff;
+}
+
+body.dark-mode .application-item p {
+  color: #ccc;
+}
+
+/* Dark mode styles */
+body.dark-mode .project-description {
+  background-color: #f1f1f1;
+  color: #555;
+}
+
+body.dark-mode .project-description h2 {
+  background-color: #f1f1f1;
+  color: #555;
+}
+
+.bg-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.bg-toggle span {
+  font-size: 2rem;
+  color: #333;
+  transition: color 0.3s;
+}
+
+body.dark-mode .bg-toggle span {
+  color: #fff;
+}
+
+body.dark-mode {
+  background-color: #333;
+  color: #f1f1f1;
+}
+
+/* Sidebar and heading remain unchanged */
+body.dark-mode .sidebar {
+  background-color: #fff; /* Keep the original background color */
+}
+
+body.dark-mode .heading {
+  background-color: #fff;
+  color: rgb(70, 67, 67);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+  color: #f1f1f1;
+}
+
+body.dark-mode #p {
+  color: #ddd;
+}
+
+body.dark-mode #p:hover {
+  color: #fff;
+}
+
+body.dark-mode input[type="date"] {
+  background-color: #555;
+  border-color: #888;
+  color: #ddd;
+}
+
+body.dark-mode input[type="date"]:focus {
+  border-color: #aaa;
+  background-color: #666;
+}
+
+body.dark-mode .bg-toggle span {
+  color: #f1f1f1;
+}
+
+.sensor-info {
+  margin-left: 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide-In Animation */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(240, 234, 234);
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #333;
+  color: #f1f1f1;
+}
+/* Sidebar and Heading */
+/* .heading {
+  margin-bottom: 16px;
+  margin-top: 25px;
+  font-size: 1.5rem;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  color: rgb(70, 67, 67);
+  width: 14rem;
+} */
+
+.sidebar {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: sticky;
+  top: 1rem;
+  border-radius: 5px;
+  width: 14rem;
+  padding: 1rem 0;
+}
+/* Date Input */
+input[type="date"] {
+  padding: 10px;
+  border: 2px solid #bbb;
+  border-radius: 3px;
+  font-size: 1rem;
+  color: #666;
+  background-color: #eee;
+  outline: none;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+
+input[type="date"]:focus {
+  border-color: #cf23cf;
+  background-color: #fff;
+}
+
+input[type="date"]::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Sensor Info Container */
+.sensor-info {
+  margin-top: 40px;
+  margin-left: 2rem;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideInFromRight 1s ease-in-out;
+  overflow: hidden; /* Ensure content within does not overflow */
+  width: 65rem;
+}
+.sensor-info {
+  margin-top: 50px; /* Adjust as needed for layout */
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.sensor-info.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.animate-slide-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sensor-info-content {
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: calc(100vh - 250px); /* Limit height and enable scrolling */
+  padding-right: 20px; /* Compensate for scrollbar to avoid content shifting */
+}
+
+/* Sensor cards styling */
+.sensor-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%; /* Adjust width as needed */
+  max-height: 60rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f1f1f1;
+}
+
+.sensor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sensor-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+sensor-card::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.sensor-card::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.sensor-image {
+  flex: 0 0 150px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.sensor-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.sensor-text {
+  max-width: 900px; /* Adjust max-width based on your design */
+  margin-bottom: 40px;
+}
+
+.sensor-text h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.sensor-text p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Ensure consistent colors for sensor info in dark mode */
+body.dark-mode .sensor-info h1,
+body.dark-mode .sensor-text h3,
+body.dark-mode .sensor-text p {
+  color: #555;
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 0;
+  list-style: none;
+  appearance: none;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: auto; /* Ensure the page is scrollable */
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.88rem;
+  user-select: none;
+  overflow-x: hidden;
+  background-color: rgb(240, 234, 234);
+}
+
+.info {
+  user-select: text;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav li {
+  margin-right: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+}
+
+header nav ul li a {
+  font-size: 1.2rem;
+}
+
+.container {
+  display: grid;
+  width: 96%;
+  gap: 1.8rem;
+  grid-template-columns: 18rem auto 14rem;
+  margin: 0 auto;
+  height: 100%; /* Ensure it takes the full viewport height */
+}
+
+.logo {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+
+.logo h2 {
+  font-size: 2.5rem;
+  font-weight: 1000;
+  margin-left: 1rem;
+}
+
+#dash {
+  margin-top: 0.2rem;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 1.8rem;
+}
+
+h2 {
+  color: rgb(70, 67, 67);
+}
+
+h3 {
+  font-size: 0.87rem;
+  color: black;
+}
+
+h4 {
+  font-size: 0.8rem;
+}
+
+h5 {
+  font-size: 0.77rem;
+}
+
+aside {
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+aside::-webkit-scrollbar {
+  width: 8px;
+}
+
+aside::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+aside:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.aside.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.4rem;
+  padding: 0 1rem;
+}
+
+aside.logo {
+  display: flex;
+  gap: 1rem;
+}
+
+/* .heading {
+  margin-bottom: 16px;
+  margin-top: 25px;
+  font-size: 1.5rem;
+  background-color: #fff;
+  margin-left: none;
+  border-radius: 5px;
+  text-align: center;
+  color: rgb(70, 67, 67);
+} */
+
+/* sidebar */
+.sidebar {
+  background-color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  top: 1rem;
+  border-radius: 5px;
+  width: 14rem;
+  padding: 1rem 0;
+  position: fixed;
+}
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  margin-left: 50px;
+  margin-top: 70px;
+}
+
+.sidebar-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%; /* Adjust width as needed */
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.sidebar-item:hover {
+  background-color: #ccc;
+}
+
+.sidebar-item:active {
+  background-color: #c6bdbd;
+}
+
+.sidebar-item h3 {
+  margin-top: 10px; /* Add margin to the top of h3 for spacing */
+}
+
+.material-symbols-outlined {
+  font-size: 2rem; /* Adjust icon size as needed */
+  color: chocolate;
+}
+
+body.dark-mode .sidebar-item h3 {
+  color: #555;
+}
+.logout {
+  margin-top: auto; /* Pushes the logout item to the bottom */
+  margin-top: 50px;
+}
+
+.heading {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 60px;
+  margin-left: 50px;
+  position: fixed;
+}
+.msg_count {
+  background-color: rgb(196, 64, 64);
+  color: white;
+  padding: 2px 5px;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+#p {
+  display: flex;
+  align-items: center;
+  height: 3.2rem;
+  padding: 0 1rem;
+  color: grey;
+  gap: 1rem;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+#p:hover {
+  transform: translateX(10px);
+  width: calc(100% - 2rem);
+}
+
+#p:hover span,
+#p:hover h3 {
+  color: #333;
+}
+
+#p:active {
+  background-color: #f2f2f2;
+  width: calc(100% - 2rem);
+}
+
+#pr:active {
+  background-color: #f2f2f2;
+  width: 100%;
+}
+
+#pr {
+  color: grey;
+}
+
+#pr:hover {
+  color: #333;
+}
+
+#pa {
+  color: rgb(71, 58, 58);
+  font-size: 1.3rem;
+}
+
+#s_1 {
+  color: rgb(71, 58, 58);
+  font-size: 1.3rem;
+}
+
+/* main */
+#m-content {
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+#m-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+#m-content::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#m-content:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Keyframes for the welcome message animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Welcome message */
+.msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  margin-top: 40px;
+  margin-left: -5rem;
+  font-size: 4rem;
+  white-space: nowrap;
+  animation: fadeInUp 1s ease-in-out; /* Apply the animation */
+}
+/* Target the date input field */
+input[type="date"] {
+  padding: 10px;
+  border: 2px solid #bbb;
+  border-radius: 3px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  color: #666;
+  background-color: #eee;
+  outline: none;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+
+/* Change the appearance when the input is focused */
+input[type="date"]:focus {
+  border-color: #cf23cf;
+  background-color: #fff;
+}
+
+input[type="date"]::placeholder {
+  color: #999;
+  font-style: italic;
+}
+.project-description {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-top: 5rem;
+  margin-left: 2rem;
+}
+
+.project-description h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: rgb(35, 26, 26);
+}
+
+.project-description p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.info {
+  text-align: justify;
+}
+
+.Application {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.Application h2 {
+  display: inline-block;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.application-item {
+  margin-bottom: 15px;
+}
+
+.application-item h3 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  color: #007bff;
+}
+
+.application-item p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Dark Mode Specific Styles */
+body.dark-mode .Application {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .Application h2,
+body.dark-mode .application-item h3 {
+  color: #66b2ff;
+}
+
+body.dark-mode .application-item p {
+  color: #ccc;
+}
+
+/* Dark mode styles */
+body.dark-mode .project-description {
+  background-color: #f1f1f1;
+  color: #555;
+}
+
+body.dark-mode .project-description h2 {
+  background-color: #f1f1f1;
+  color: #555;
+}
+
+.bg-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.bg-toggle span {
+  font-size: 2rem;
+  color: #333;
+  transition: color 0.3s;
+}
+
+body.dark-mode .bg-toggle span {
+  color: #fff;
+}
+
+body.dark-mode {
+  background-color: #333;
+  color: #f1f1f1;
+}
+
+/* Sidebar and heading remain unchanged */
+body.dark-mode .sidebar {
+  background-color: #fff; /* Keep the original background color */
+}
+
+body.dark-mode .heading {
+  background-color: #fff;
+  color: rgb(70, 67, 67);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+  color: #f1f1f1;
+}
+
+body.dark-mode #p {
+  color: #ddd;
+}
+
+body.dark-mode #p:hover {
+  color: #fff;
+}
+
+body.dark-mode input[type="date"] {
+  background-color: #555;
+  border-color: #888;
+  color: #ddd;
+}
+
+body.dark-mode input[type="date"]:focus {
+  border-color: #aaa;
+  background-color: #666;
+}
+
+body.dark-mode .bg-toggle span {
+  color: #f1f1f1;
+}
+
+.sensor-info {
+  margin-left: 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide-In Animation */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(240, 234, 234);
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #333;
+  color: #f1f1f1;
+}
+/* Sidebar and Heading */
+/* .heading {
+  margin-bottom: 16px;
+  margin-top: 25px;
+  font-size: 1.5rem;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  color: rgb(70, 67, 67);
+  width: 14rem;
+} */
+
+.sidebar {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: sticky;
+  top: 1rem;
+  border-radius: 5px;
+  width: 14rem;
+  padding: 1rem 0;
+}
+/* Date Input */
+input[type="date"] {
+  padding: 10px;
+  border: 2px solid #bbb;
+  border-radius: 3px;
+  font-size: 1rem;
+  color: #666;
+  background-color: #eee;
+  outline: none;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+
+input[type="date"]:focus {
+  border-color: #cf23cf;
+  background-color: #fff;
+}
+
+input[type="date"]::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Sensor Info Container */
+.sensor-info {
+  margin-top: 40px;
+  margin-left: 2rem;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideInFromRight 1s ease-in-out;
+  overflow: hidden; /* Ensure content within does not overflow */
+  width: 65rem;
+}
+.sensor-info {
+  margin-top: 50px; /* Adjust as needed for layout */
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.sensor-info.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.animate-slide-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sensor-info-content {
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: calc(100vh - 250px); /* Limit height and enable scrolling */
+  padding-right: 20px; /* Compensate for scrollbar to avoid content shifting */
+}
+
+/* Sensor cards styling */
+.sensor-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%; /* Adjust width as needed */
+  max-height: 60rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f1f1f1;
+}
+
+.sensor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sensor-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+sensor-card::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.sensor-card::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.sensor-image {
+  flex: 0 0 150px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.sensor-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.sensor-text {
+  max-width: 900px; /* Adjust max-width based on your design */
+  margin-bottom: 40px;
+}
+
+.sensor-text h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.sensor-text p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Ensure consistent colors for sensor info in dark mode */
+body.dark-mode .sensor-info h1,
+body.dark-mode .sensor-text h3,
+body.dark-mode .sensor-text p {
+  color: #555;
+}
+
+/* Add the following styles to your existing CSS file */
+.sensor-info {
+  /* ... existing styles ... */
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: calc(100vh - 250px); /* Limit height and enable scrolling */
+  padding-right: 20px; /* Compensate for scrollbar to avoid content shifting */
+}
+
+.footer {
+  position: relative;
+  background-color: #fff; /* Dark gray background */
+  color: #555; /* White text color */
+  padding: 20px;
+  margin-top: 0; /* Remove negative margin top */
+  clear: both; /* Ensure the footer clears the sensor-info div */
+  border-radius: 5px;
+  margin-left: 2rem;
+  margin-top: 50px;
+}
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.footer-card {
+  flex: 0 0 25%;
+  margin: 20px;
+  padding: 20px;
+  background-color: #333; /* Darker gray background */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease; /* Add transition effect */
+}
+
+.footer-card span a {
+  color: #fff;
+}
+
+.footer-card:hover {
+  background-color: #444; /* Darker gray background on hover */
+}
+
+.logo {
+  width: 100px; /* Adjust the width of the logo */
+  height: 100px; /* Adjust the height of the logo */
+  margin: 20px; /* Add margin to the logo */
+  border-radius: 10px; /* Add border radius to the logo */
+}
+
+.sensor-tag {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  transition: color 0.3s ease; /* Add transition effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.social {
+}
+
+.dic_logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 1.2rem;
+}

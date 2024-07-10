@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h1 class="heading" id="value-heading">Values</h1>
+            <div class="sidebar-content">
+                <a href="#" class="sidebar-item">
+                    <span class="material-symbols-outlined">device_thermostat</span>
+                    <h3>Temperature</h3>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="material-symbols-outlined">humidity_high</span>
+                    <h3>Humidity</h3>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="material-symbols-outlined">gastroenterology</span>
+                    <h3>Methane</h3>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="material-symbols-outlined">detector_smoke</span>
+                    <h3>Smoke</h3>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="material-symbols-outlined">mail</span>
+                    <h3>Messages<span class="msg_count">14</span></h3>
+                </a>
+                <a href="Login_out/login.html" class="sidebar-item logout">
+                    <span class="material-symbols-outlined">
+                        login
+                    </span>
+                    <h3>Login</h3>
+                </a>
+            </div>
+        </aside>
+        <main>
+            <h1 class="msg">Welcome to the Dashboard!</h1>
+            <div class="date">
+                <input type="date" id="today-date">
+            </div>
+            <div class="project-description">
+                <h2>Real Time Sensor Monitoring</h2>
+                <p class="info">This project involves real-time monitoring of various environmental parameters using
+                    sensors such as
+                    temperature, humidity, methane, and smoke sensors. The sensor values are continuously collected and
+                    displayed on this dashboard, providing live updates for effective monitoring and analysis. The
+                    system is designed for both domestic and industrial applications, ensuring safety and environmental
+                    monitoring. Each sensor provides essential data for monitoring environmental conditions in various
+                    settings, from industrial facilities to residential areas. This setup ensures that stakeholders can
+                    make informed
+                    decisions promptly based on accurate, up-to-date information.The dashboard interface, accessible
+                    through multiple web pages, serves as a centralized hub for displaying real-time data from these
+                    sensors. It not only visualizes current values but also logs historical data trends, allowing for
+                    in-depth analysis and predictive insights. This setup is designed to enhance operational efficiency,
+                    safety protocols, and environmental sustainability across various sectors, including industrial
+                    facilities, commercial buildings, and residential complexes.
+                </p>
+                <br>
+                <div class="Application">
+                    <h2>Applications:</h2>
+                    <div class="application-item">
+                        <h3>Industrial Safety:</h3>
+                        <p class="info">Monitoring gas concentrations in industrial settings to prevent hazardous
+                            conditions and
+                            ensure worker safety.</p>
+                    </div>
+                    <div class="application-item">
+                        <h3>Environmental Monitoring:</h3>
+                        <p class="info">Tracking pollution levels in urban areas to address air quality issues.</p>
+                    </div>
+                    <div class="application-item">
+                        <h3>Home Safety:</h3>
+                        <p class="info">Detecting gas leaks in residential areas to prevent accidents.</p>
+                    </div>
+                    <div class="application-item">
+                        <h3>Agriculture:</h3>
+                        <p class="info">Monitoring methane emissions from livestock to manage environmental impact.</p>
+                    </div>
+                    <div class="application-item">
+                        <h3>Smart Cities:</h3>
+                        <p class="info">Integrating sensor data into city management systems for better urban planning
+                            and public
+                            health management.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="sensor-info" id="sensor-info">
+                <div class="sensor-info-content">
+                    <h1 class="sensor-t">Sensors Used in This Project</h1>
+                    <br>
+                    <div class="sensor-card">
+                        <div class="sensor-image">
+                            <a href="images/MQ-2.jpg" target="_blank"><img src="images/MQ-2.jpg" alt=""></a>
+                        </div>
+                        <div class="sensor-text">
+                            <h3>MQ2 Sensor</h3>
+                            <p class="info">The MQ2 sensor is a versatile and widely used gas sensor designed to detect
+                                various
+                                gases,
+                                including LPG, i-butane, propane, methane, alcohol, hydrogen, and smoke. It operates by
+                                utilizing a tin dioxide (SnO2) sensitive layer with a lower conductivity in clean air,
+                                which increases in the presence of target gases. The sensor provides a quick response
+                                and
+                                recovery time, making it ideal for applications in domestic and industrial gas leakage
+                                detection,
+                                environmental monitoring, and safety systems. The MQ2 sensor is known for its high
+                                sensitivity,
+                                long life, and affordability, making it a popular choice for hobbyists and professionals
+                                alike. For more information you can visit <a
+                                    href="https://docs.sunfounder.com/projects/ultimate-sensor-kit/en/latest/components_basic/02-component_gas.html">here.</a>
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sensor-card">
+                        <div class="sensor-image">
+                            <a href="images/MQ-4-Methane-Gas-Sensor-pinout-diagram.webp" target="_blank"><img
+                                    src="images/MQ-4-Methane-Gas-Sensor-pinout-diagram.webp" alt=""></a>
+                        </div>
+                        <div class="sensor-text">
+                            <h3>MQ4 Sensor</h3>
+                            <p class="info">The MQ4 sensor is a gas sensor that detects the presence of methane (CH₄) in
+                                the air. It
+                                operates based on the principle of chemical reaction with the target gas, where the
+                                conductivity of its ceramic sensing element changes with varying methane concentrations.
+                                This change in conductivity is then converted into an electrical signal that can be
+                                measured
+                                and interpreted. MQ4 sensors are widely used in gas leakage detection systems,
+                                industrial
+                                safety applications, and environmental monitoring due to their sensitivity to methane
+                                gas
+                                and ease of integration into electronic circuits for real-time detection and alerting
+                                purposes. For more information you can visit <a
+                                    href="https://www.elprocus.com/mq4-methane-gas-sensor/">here.</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ... rest of the HTML code ... -->
+
+            <footer class="footer">
+                <div class="footer-content">
+
+                    <div class="footer-card">
+                        <span class="sensor-tag">
+                            <a href="https://dicpu.in/">About Us</a>
+                        </span>
+                    </div>
+                    <div class="footer-card">
+                        <span class="sensor-tag">Contact Us</span>
+                        <p><a href="mailto:info@.com">info@dicchandigarh.com</a></p>
+                        <p><a href="tel:+91 98765 43210">+91 98765 43210</a></p>
+                        <p>Address: DIC Chandigarh, Sector 17, Chandigarh</p>
+                    </div>
+                    <div class="footer-card">
+                        <span class="sensor-tag">Follow Us On</span>
+                        <br>
+                        <ul class="social">
+                            <li><a href="https://www.instagram.com/dicchandigarh/" target="_blank"><i
+                                        class="material-symbols-outlined">instagram</i></a></li>
+                            <br>
+                            <li><a href="https://in.linkedin.com/company/dic-panjab-university" target="_blank"><i
+                                        class="material-symbols-outlined">linkedin</i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="dic_logo">
+                    <img src="images/dic.jpeg" alt="DIC Chandigarh Logo" class="logo">
+                </div>
+                <p class="copyright">&copy; 2023 DIC Chandigarh. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+    <button id="bg-toggle" class="bg-toggle">
+        <span id="bg-icon" class="material-symbols-outlined">dark_mode</span>
+    </button>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+
+</html>

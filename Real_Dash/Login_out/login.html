@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <h2>or</h2>
+        <h1>Sign Up</h1>
+        <form id="signup-form">
+            <label for="new-username">Username:</label>
+            <input type="text" id="new-username" name="new-username" required>
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" name="new-password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Implement login logic here
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                // Example: authenticate and store the login state in local storage
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('username', username);
+                window.location.href = 'index.html'; // Redirect back to main page
+            });
+
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Implement signup logic here
+                const newUsername = document.getElementById('new-username').value;
+                const newPassword = document.getElementById('new-password').value;
+                // Example: save user details and authenticate
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('username', newUsername);
+                window.location.href = 'index.html'; // Redirect back to main page
+            });
+        });
+    </script>
+</body>
+
+</html>
