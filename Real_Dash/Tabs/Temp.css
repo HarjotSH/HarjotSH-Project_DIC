@@ -27,9 +27,8 @@ body {
 
 h1 {
   text-align: center;
-  margin: 3rem;
-  margin-top: 7rem;
-  font-size: 50px;
+  margin: 3rem auto 0; /* Center the heading horizontally and add top margin */
+  font-size: 3rem; /* Adjusted font size for responsiveness */
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -37,8 +36,6 @@ h1 {
 }
 
 .card {
-  height: 70rem;
-  width: 70rem;
-  margin-top: 3rem;
-  margin-left: 12rem;
+  max-width: 70%; /* Adjusted to a percentage for responsiveness */
+  margin: 3rem auto; /* Center the card horizontally and add top margin */
 }
