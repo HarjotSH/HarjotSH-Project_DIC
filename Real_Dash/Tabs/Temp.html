@@ -25,10 +25,14 @@
 
 <footer>
     <script>
+
+        let allData = [];
+        let currentIndex = 0;
+
         async function fetchData() {
             const apiKey = 'AIzaSyD44Cq-92iMcRwR0yMJ8Cxa93YQ36nwV6g'; // Replace with your valid API key
             const sheetId = '173SDpk1XVIOiPfkUHDGCaZ_JIk0oO6vCw6MSF6BD6_4'; // Replace with your valid Sheet ID
-            const range = 'B1:B16'; // Adjust the range to fetch 15 temperature values from column B
+            const range = 'A1:B42'; // Adjust the range to fetch 42 rows of time and temperature values
 
             const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
             console.log(`Fetching data from URL: ${url}`);
@@ -46,35 +50,55 @@
             }
         }
 
+        async function initializeData() {
+            allData = await fetchData();
+        }
+
+
         async function updateChart() {
-            const newData = await fetchData();
-            if (newData && newData.length > 0) {
-                const tempData = newData.map(row => parseFloat(row[0]));
-                console.log('Parsed temperature data:', tempData);
+            if (currentIndex < allData.length) {
+                const latestData = allData[currentIndex]; // Get the current data point
+                const timeValue = latestData[0];
+                const tempValue = parseFloat(latestData[1]);
+                console.log('Current index:', currentIndex);
+                console.log('Time:', timeValue);
+                console.log('Temperature:', tempValue);
 
-                if (tempData.length > 0) {
-                    data.labels.push(new Date().toLocaleTimeString());
-                    data.datasets[0].data.push(tempData[tempData.length - 1]);
+                data.labels.push(timeValue);
+                data.datasets[0].data.push(tempValue);
 
-                    if (data.labels.length > 15) {
-                        data.labels.shift();
-                        data.datasets[0].data.shift();
-                    }
-
-                    mychart.update();
+                if (data.labels.length > 15) {
+                    data.labels.shift();
+                    data.datasets[0].data.shift();
                 }
+
+                mychart.update();
+                currentIndex++;
             }
         }
 
         var data = {
-            labels: [0],
+            labels: [],
             datasets: [
                 {
                     label: 'Temperature',
-                    data: [0],
+                    data: [],
                     borderColor: 'rgb(0, 128, 0)', // Default to green
                     lineTension: 0.5,
-                    fill: false
+                    fill: false,
+                    segment: {
+                        borderColor: (ctx) => {
+                            const currentValue = ctx.p1.parsed.y;
+                            const previousValue = ctx.p0.parsed.y;
+                            if (currentValue > previousValue) {
+                                return 'rgb(0, 128, 0)'; // Increasing: green
+                            } else if (currentValue < previousValue) {
+                                return 'rgb(255, 0, 0)'; // Decreasing: red
+                            } else {
+                                return 'rgb(255, 255, 0)'; // Same: yellow
+                            }
+                        }
+                    }
                 }
             ]
         };
@@ -88,7 +112,7 @@
                     y: {
                         beginAtZero: true,
                         min: 0, // Set the minimum value of the y-axis
-                        max: 90, // Set the maximum value of the y-axis
+                        max: 110, // Set the maximum value of the y-axis
                         ticks: {
                             stepSize: 5 // Set the step size for the y-axis
                         }
@@ -117,8 +141,9 @@
             config
         );
 
-        updateChart();
-        window.setInterval(updateChart, 2000);
+        initializeData().then(() => {
+            window.setInterval(updateChart, 2000); // Update every 2 seconds
+        });
     </script>
 </footer>
 
