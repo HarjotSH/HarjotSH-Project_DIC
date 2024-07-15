@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 0;
+  list-style: none;
+  appearance: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(241, 242, 246);
+  overflow-x: hidden;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  text-align: center;
+  margin: 3rem auto 0;
+  font-size: 3rem;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.card {
+  max-width: 70%;
+  margin: 3rem auto;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* Center the button vertically as well */
+}
+
+.download-btn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+}
+
+.download-btn:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid #4caf50;
+}
+
+.download-btn:active {
+  background-color: #3e8e41;
+  color: white;
+  border: none;
+}
+
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.col-12 {
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+}
+
+#mychart {
+  height: 100%;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .card {
+    max-width: 90%;
+  }
+
+  .download-btn {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+  .card-body {
+    height: 70vh; /* Adjust for smaller screens */
+  }
+}
