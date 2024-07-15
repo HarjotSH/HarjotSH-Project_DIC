@@ -1474,3 +1474,79 @@ body.dark-mode .sensor-text p {
   text-align: center;
   font-size: 1.2rem;
 }
+
+@media (max-width: 1422px) {
+  .container {
+    display: grid;
+    width: 100%;
+    gap: 0;
+    grid-template-columns: 80px calc(100% - 80px);
+    margin: 0 auto;
+    height: 100%;
+  }
+  .sidebar {
+    width: 80px;
+  }
+  .heading {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 61px;
+    margin-left: 5px;
+    position: fixed;
+  }
+  .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    margin-left: 2px;
+    margin-top: 70px;
+  }
+  .sidebar-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    padding: 1px;
+    border-radius: 4px;
+    margin-bottom: 3vh;
+  }
+  .sidebar-item h3 {
+    font-size: 0.57rem;
+    color: black;
+  }
+  .msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 1.5rem;
+    white-space: wrap;
+    width: calc(100% - 80px);
+  }
+  .project-description {
+    padding: 2px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .sensor-info {
+    margin-top: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 2px;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+  }
+  .footer {
+    margin-right: 2rem;
+  }
+}
