@@ -140,29 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateMessages(); // Initial call to fetch and process data
 });
 
-// Periodically update alert messages
-document.addEventListener('DOMContentLoaded', () => {
-    const messagesContainer = document.createElement('div');
-    messagesContainer.classList.add('messages-container');
 
-    document.body.appendChild(messagesContainer);
-
-    function updateAlertMessages() {
-        const messages = JSON.parse(localStorage.getItem('alertMessages')) || [];
-        messagesContainer.innerHTML = ''; // Clear previous messages
-
-        messages.forEach((msg, index) => {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message');
-            messageElement.textContent = `${index + 1}. ${msg}`;
-            messagesContainer.appendChild(messageElement);
-        });
-    }
-
-    // Call updateAlertMessages periodically to fetch the latest messages
-    setInterval(updateAlertMessages, 5000); // Update every 5 seconds
-    updateAlertMessages(); // Initial call to populate messages on page load
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     function updateMessageCount() {
