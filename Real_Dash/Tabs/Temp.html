@@ -10,7 +10,6 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
 </head>
 
 <body>
@@ -30,55 +29,91 @@
 
 <footer>
     <script>
+        const windowSize = 15; // Number of values to display on the chart
+        let startIndex = 1; // Starting index for fetching data
+        let isChartUpdating = false;
+        let hasDataEnded = false;
 
-        let allData = [];
-        let currentIndex = 0;
+        async function loadChartData() {
+            const savedLabels = JSON.parse(localStorage.getItem('chartLabels')) || [];
+            const savedData = JSON.parse(localStorage.getItem('chartData')) || [];
 
-        // async function fetchData() {
-        //     const apiKey = 'AIzaSyD44Cq-92iMcRwR0yMJ8Cxa93YQ36nwV6g'; // Replace with your valid API key
-        //     const sheetId = '173SDpk1XVIOiPfkUHDGCaZ_JIk0oO6vCw6MSF6BD6_4'; // Replace with your valid Sheet ID
-        //     const range = 'A1:B42'; // Adjust the range to fetch 42 rows of time and temperature values
+            if (savedLabels.length > 0 && savedData.length > 0) {
+                // Update chart data before rendering the chart
+                data.labels = savedLabels;
+                data.datasets[0].data = savedData;
+                startIndex = savedLabels.length + 1; // Continue from the last index
+            }
 
-        //     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-        //     console.log(`Fetching data from URL: ${url}`);
-
-        //     try {
-        //         const response = await fetch(url);
-        //         if (!response.ok) {
-        //             throw new Error(`HTTP error! status: ${response.status}`);
-        //         }
-        //         const data = await response.json();
-        //         console.log('Data fetched:', data);
-        //         return data.values;
-        //     } catch (error) {
-        //         console.error('Error fetching data from Google Sheets:', error);
-        //     }
-        // }
-
-        async function initializeData() {
-            allData = await fetchData();
+            // Initialize chart after data is loaded
+            mychart = new Chart(document.getElementById('mychart'), config);
         }
 
+        function saveChartData() {
+            localStorage.setItem('chartLabels', JSON.stringify(mychart.data.labels));
+            localStorage.setItem('chartData', JSON.stringify(mychart.data.datasets[0].data));
+        }
+
+        async function fetchData(startIndex) {
+            const apiKey = 'AIzaSyD44Cq-92iMcRwR0yMJ8Cxa93YQ36nwV6g'; // Replace with your valid API key
+            const sheetId = '173SDpk1XVIOiPfkUHDGCaZ_JIk0oO6vCw6MSF6BD6_4'; // Replace with your valid Sheet ID
+            const range = `A${startIndex}:B${startIndex}`; // Fetch one row at a time
+
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+            console.log(`Fetching data from URL: ${url}`);
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Data fetched:', data);
+                return data.values || [];
+            } catch (error) {
+                console.error('Error fetching data from Google Sheets:', error);
+                return [];
+            }
+        }
 
         async function updateChart() {
-            if (currentIndex < allData.length) {
-                const latestData = allData[currentIndex]; // Get the current data point
-                const timeValue = latestData[0];
-                const tempValue = parseFloat(latestData[1]);
-                console.log('Current index:', currentIndex);
-                console.log('Time:', timeValue);
-                console.log('Temperature:', tempValue);
+            if (isChartUpdating || hasDataEnded) return;
+            isChartUpdating = true;
 
-                data.labels.push(timeValue);
-                data.datasets[0].data.push(tempValue);
+            const newData = await fetchData(startIndex);
+            if (newData && newData.length > 0) {
+                newData.forEach(dataPoint => {
+                    const timeValue = dataPoint[0];
+                    const tempValue = parseFloat(dataPoint[1]);
 
-                if (data.labels.length > 15) {
-                    data.labels.shift();
-                    data.datasets[0].data.shift();
-                }
+                    // Update data and labels
+                    if (mychart.data.labels.length >= windowSize) {
+                        mychart.data.labels.shift(); // Remove the oldest label
+                        mychart.data.datasets[0].data.shift(); // Remove the oldest data point
+                    }
+                    mychart.data.labels.push(timeValue);
+                    mychart.data.datasets[0].data.push(tempValue);
 
-                mychart.update();
-                currentIndex++;
+                    // Dynamically adjust y-axis max if needed
+                    if (tempValue > mychart.options.scales.y.max) {
+                        mychart.options.scales.y.max = Math.ceil(tempValue / 10) * 10; // Increase max value to nearest 10
+                    }
+
+                    // Update the startIndex for the next fetch
+                    startIndex += 1;
+
+                    // Save the updated chart data
+                    saveChartData();
+
+                    // Update the chart
+                    requestAnimationFrame(() => {
+                        mychart.update();
+                        isChartUpdating = false;
+                    });
+                });
+            } else {
+                hasDataEnded = true;
+                isChartUpdating = false;
             }
         }
 
@@ -113,13 +148,22 @@
             data: data,
             options: {
                 responsive: true,
+                animation: {
+                    duration: 2, // Keep animation enabled for smooth updates
+                    easing: 'easeInOutQuad'
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        min: 0, // Set the minimum value of the y-axis
-                        max: 110, // Set the maximum value of the y-axis
+                        max: 100, // Initial maximum value of the y-axis
                         ticks: {
                             stepSize: 5 // Set the step size for the y-axis
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 15 // Limit the number of x-axis ticks to avoid clutter
                         }
                     }
                 },
@@ -127,34 +171,28 @@
                     legend: {
                         display: true
                     }
-                },
-                elements: {
-                    line: {
-                        borderColor: (ctx) => {
-                            const data = ctx.dataset.data;
-                            const currentValue = data[ctx.dataIndex];
-                            const previousValue = data[ctx.dataIndex - 1];
-                            return currentValue >= previousValue ? 'rgb(0, 128, 0)' : 'rgb(255, 0, 0)';
-                        }
-                    }
                 }
             }
         };
 
-        var mychart = new Chart(
-            document.getElementById('mychart'),
-            config
-        );
+        var mychart; // Declare mychart here
 
-        initializeData().then(() => {
+        // Load existing data from localStorage and initialize the chart on page load
+        window.addEventListener('load', async () => {
+            await loadChartData();
+            // Start the update interval to continuously fetch and append new data
             window.setInterval(updateChart, 2000); // Update every 2 seconds
         });
+
+        // Save chart data to localStorage before the page is unloaded
+        window.addEventListener('beforeunload', saveChartData);
+
         function downloadExcel() {
             // Prepare data for Excel
-            let excelData = allData.map(row => {
+            let excelData = mychart.data.labels.map((label, index) => {
                 return {
-                    'Time': row[0],
-                    'Temperature': parseFloat(row[1])
+                    'Time': label,
+                    'Temperature': mychart.data.datasets[0].data[index]
                 };
             });
 
