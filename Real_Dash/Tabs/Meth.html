@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <h1>Real Time Methane_Value</h1>
+    <h1>Real Time Methane</h1>
     <div class="card">
         <div class="card-header">
             <button class="download-btn" onclick="downloadExcel()">Download Excel</button>
@@ -29,54 +29,92 @@
 
 <footer>
     <script>
-        let allData = [];
-        let currentIndex = 0;
+        let startIndex = 1; // Starting index for fetching data
+        const windowSize = 15; // Number of values to display on the chart
+        let isChartUpdating = false;
+        let hasDataEnded = false;
 
-        // async function fetchData() {
-        //     const apiKey = 'AIzaSyD44Cq-92iMcRwR0yMJ8Cxa93YQ36nwV6g'; // Replace with your valid API key
-        //     const sheetId = '173SDpk1XVIOiPfkUHDGCaZ_JIk0oO6vCw6MSF6BD6_4'; // Replace with your valid Sheet ID
-        //     const range = 'A1:D42'; // Adjust the range to fetch 42 rows of time, temperature, and humidity values
+        async function fetchData(startIndex) {
+            const apiKey = 'AIzaSyD44Cq-92iMcRwR0yMJ8Cxa93YQ36nwV6g'; // Replace with your valid API key
+            const sheetId = '173SDpk1XVIOiPfkUHDGCaZ_JIk0oO6vCw6MSF6BD6_4'; // Replace with your valid Sheet ID
+            const range = `A${startIndex}:D${startIndex}`; // Fetch one row at a time
 
-        //     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-        //     console.log(`Fetching data from URL: ${url}`);
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+            console.log(`Fetching data from URL: ${url}`);
 
-        //     try {
-        //         const response = await fetch(url);
-        //         if (!response.ok) {
-        //             throw new Error(`HTTP error! status: ${response.status}`);
-        //         }
-        //         const data = await response.json();
-        //         console.log('Data fetched:', data);
-        //         return data.values;
-        //     } catch (error) {
-        //         console.error('Error fetching data from Google Sheets:', error);
-        //     }
-        // }
-
-        async function initializeData() {
-            allData = await fetchData();
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Data fetched:', data);
+                return data.values || [];
+            } catch (error) {
+                console.error('Error fetching data from Google Sheets:', error);
+                return [];
+            }
         }
 
         async function updateChart() {
-            if (currentIndex < allData.length) {
-                const latestData = allData[currentIndex]; // Get the current data point
-                const timeValue = latestData[0];
-                const meth_Value = parseFloat(latestData[3]);
-                console.log('Current index:', currentIndex);
-                console.log('Time:', timeValue);
-                console.log('Methane:', meth_Value);
+            if (isChartUpdating || hasDataEnded) return;
+            isChartUpdating = true;
 
-                data.labels.push(timeValue);
-                data.datasets[0].data.push(meth_Value);
+            const newData = await fetchData(startIndex);
+            if (newData && newData.length > 0) {
+                newData.forEach(dataPoint => {
+                    const timeValue = dataPoint[0];
+                    const methaneValue = parseFloat(dataPoint[3]);
 
-                if (data.labels.length > 15) {
-                    data.labels.shift();
-                    data.datasets[0].data.shift();
-                }
+                    // Update data and labels
+                    if (mychart.data.labels.length >= windowSize) {
+                        mychart.data.labels.shift(); // Remove the oldest label
+                        mychart.data.datasets[0].data.shift(); // Remove the oldest data point
+                    }
+                    mychart.data.labels.push(timeValue);
+                    mychart.data.datasets[0].data.push(methaneValue);
 
-                mychart.update();
-                currentIndex++;
+                    // Dynamically adjust y-axis max if needed
+                    if (methaneValue > mychart.options.scales.y.max) {
+                        mychart.options.scales.y.max = Math.ceil(methaneValue / 100) * 100; // Increase max value to nearest 100
+                    }
+
+                    // Update the startIndex for the next fetch
+                    startIndex += 1;
+
+                    // Save the updated chart data
+                    saveChartData();
+
+                    // Update the chart
+                    requestAnimationFrame(() => {
+                        mychart.update();
+                        isChartUpdating = false;
+                    });
+                });
+            } else {
+                hasDataEnded = true;
+                isChartUpdating = false;
             }
+        }
+
+        function saveChartData() {
+            localStorage.setItem('chartLabels', JSON.stringify(mychart.data.labels));
+            localStorage.setItem('chartData', JSON.stringify(mychart.data.datasets[0].data));
+        }
+
+        async function loadChartData() {
+            const savedLabels = JSON.parse(localStorage.getItem('chartLabels')) || [];
+            const savedData = JSON.parse(localStorage.getItem('chartData')) || [];
+
+            if (savedLabels.length > 0 && savedData.length > 0) {
+                // Update chart data before rendering the chart
+                data.labels = savedLabels;
+                data.datasets[0].data = savedData;
+                startIndex = savedLabels.length + 1; // Continue from the last index
+            }
+
+            // Initialize chart after data is loaded
+            mychart = new Chart(document.getElementById('mychart'), config);
         }
 
         var data = {
@@ -110,13 +148,22 @@
             data: data,
             options: {
                 responsive: true,
+                animation: {
+                    duration: 2, // Disable animation
+                    easing: 'easeInOutQuad' 
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        min: 0, // Set the minimum value of the y-axis
-                        max: 800, // Set the maximum value of the y-axis
+                        max: 600, // Initial maximum value of the y-axis
                         ticks: {
-                            stepSize: 10 // Set the step size for the y-axis
+                            stepSize: 50 // Set the step size for the y-axis
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 15 // Limit the number of x-axis ticks to avoid clutter
                         }
                     }
                 },
@@ -128,22 +175,22 @@
             }
         };
 
-        var mychart = new Chart(
-            document.getElementById('mychart'),
-            config
-        );
-
-        // Initialize the data and start the update interval
-        initializeData().then(() => {
+        // Load existing data from localStorage and initialize the chart on page load
+        window.addEventListener('load', async () => {
+            await loadChartData();
+            // Start the update interval to continuously fetch and append new data
             window.setInterval(updateChart, 2000); // Update every 2 seconds
         });
 
+        // Save chart data to localStorage before the page is unloaded
+        window.addEventListener('beforeunload', saveChartData);
+
         function downloadExcel() {
             // Prepare data for Excel
-            let excelData = allData.map(row => {
+            let excelData = mychart.data.labels.map((label, index) => {
                 return {
-                    'Time': row[0],
-                    'Methane': parseFloat(row[1])
+                    'Time': label,
+                    'Methane': mychart.data.datasets[0].data[index]
                 };
             });
 
@@ -155,7 +202,7 @@
             XLSX.utils.book_append_sheet(wb, ws, "Methane Data");
 
             // Write the workbook to a file and trigger download
-            XLSX.writeFile(wb, "methane_data.xlsx");
+            XLSX.writeFile(wb, "Methane_data.xlsx");
         }
     </script>
 </footer>
